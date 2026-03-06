@@ -159,8 +159,8 @@ Espero que o projeto seja de resposta positiva às especificações e que possam
     </div>
     
     <nav>
-        <a href="#correcao-de-erro">Correção de erro (20)</a>
-        <a href="#melhoria-de-interface">Melhoria de interface (30)</a>
+        <a href="#correcao-de-erro">Correção de erro (30)</a>
+        <a href="#melhoria-de-interface">Melhoria de interface (45)</a>
         <a href="#outros">Outros (2)</a>
 
     </nav>
@@ -696,6 +696,69 @@ O link `"Ver Todos"` dentro do menu suspenso de "Loja" no cabeçalho foi alterad
 Em vez de enviar o usuário para a página padrão de produtos genérica, agora ele executa exatamente a mesma função dos botões dinâmicos acima dele e te redireciona ativamente para a URL de filtro: `/products?genre=Todas`.
 
 A interface do catálogo vai reconhecer a seleção de imediato e exibir todas as obras disponíveis sem a restrição para *Ficção*.
+            </div>
+
+
+            <div class="prompt-card">
+                <div class="prompt-desc">Prompt User Input</div>Corrija os seguintes erros:
+Correção de erro:
+
+- Diminua o tempo de execução da animação da página de entrada
+- Ao abrir a api em outra máquina, as imagens não carregam corretamente. Baseado nas possíveis causas, resolva imediatamente
+            </div>
+
+            <div class="prompt-card">
+                <div class="prompt-desc">Prompt User Input</div>Apague tudo o que não estiver sendo utilizado
+            </div>
+
+            <div class="prompt-card">
+                <div class="prompt-desc">Prompt User Input</div>Agora as imagens poderão ser vistas em outras máquinas?
+            </div>
+
+            <div class="prompt-card">
+                <div class="prompt-desc">Prompt User Input</div>Ao compilar em outra máquina ocorre o seguinte erro. Corrija erros semelhantes para que o mesmo não se repita.
+O erro JSX value should be either an expression or a quoted JSX text significa que o React encontrou as crases (template literals), mas não entendeu que elas fazem parte de um código JavaScript, porque elas não estão envolvidas por chaves {}.
+
+Como corrigir o erro no Header.jsx
+Vá até o arquivo frontend/src/components/Header.jsx na linha 50 e faça a seguinte alteração:
+
+Como está agora (Errado):
+&lt;img src=`${API_URL}/visual/logo.png` alt="Gusli Logo" ...
+
+Como deve ficar (Correto):
+&lt;img src={`${API_URL}/visual/logo.png`} alt="Gusli Logo" ...
+            </div>
+
+            <div class="prompt-card">
+                <div class="prompt-desc">Prompt User Input</div>Verifique todos os arquivos para que não ocorram erros
+            </div>
+
+            <div class="prompt-card">
+                <div class="prompt-desc">Prompt User Input</div>Apague todos os arquivos desnecessários
+            </div>
+
+            <div class="prompt-card">
+                <div class="prompt-desc">Prompt User Input</div>Retire completamente a animação da página de loading para a página principal
+
+Minha conta
+- Em status dos pedidos, em caso de houver um pedido, o botão "Aguardando Pagamento" deve ter somente a borda com a coloração verde escura
+
+Contato
+- Altere o e-mail de suporte de "suporte@guslibooks.com.br" para "henriquelimagusmao@gmail.com"
+- Ao selecionar os botões, os ícones não devem ficar verdes
+            </div>
+
+            <div class="prompt-card">
+                <div class="prompt-desc">Prompt User Input</div>Adicione novamente a página de loading, com a mesma formatação antiga, só que sem a animação de preencher a página em formato circular. Mantenha o logo e os 4 livros da mesma forma
+            </div>
+
+            <div class="prompt-card">
+                <div class="prompt-desc">Prompt User Input</div>Altere a cor do rodapé para #FFFDF5
+            </div>
+
+            <div class="prompt-card">
+                <div class="prompt-desc">Prompt User Input</div>Na home:
+Altere "Leitura descomplicada" para: "Seleção de livros que não pegam poeira na estante"
             </div>
 
         </section>
@@ -1259,6 +1322,84 @@ Corpo: Apenas o seguinte texto exato: 'Seu pedido foi feito. Entraremos em conta
                 <div class="prompt-desc">Prompt User Input</div>Adicione ao README.md da pasta principal DTI: 
 - A documentação da API, explicando todos os arquivos, funções, de maneira objetiva e direto ao ponto
 - Adicione neste documento uma seção de "Premissas consideradas". Adicione à estas: O pagamento será feito de forma manual, após a seleção do pedido pelo usuário; O frete será discutido posteriormente; O foco da Gusli Books é divulgar livros ao consumidor, não do usuário procurar um livro para comprar, como na Amazon
+            </div>
+
+
+            <div class="prompt-card">
+                <div class="prompt-desc">Prompt User Input</div>Adicionar a seção "Dúvidas Frequentes" abaixo do "Descubra sua próxima leitura":
+Please create a new "Frequently Asked Questions" (FAQ) section for the GUSLI Books website.
+
+1. Component Architecture (Accordion/Sanfona):
+Implement the FAQ as an interactive Accordion component.
+By default, all items must be collapsed.
+Clicking on a question should smoothly expand the container to reveal the answer below it. Clicking again should collapse it.
+Match the Accordion's border, padding, and hover styling to the existing buttons and glassmorphism elements on the site.
+
+2. Typography &amp; Colors:
+Questions: Must be styled in #12271D with a semi-bold or bold font weight.
+Answers: Must be styled in standard black with a regular font weight.
+
+3. Content: Populate the Accordion with Q&amp;A pairs in Portuguese covering payment, returns, delivery, book suggestions, reuse, plastic-free packaging, tracking, e-books, and address changes.
+            </div>
+
+            <div class="prompt-card">
+                <div class="prompt-desc">Prompt User Input</div>Moa, a animação que passa os gêneros literários exatamente como está para a parte de cima do site. Isto é, abaixo do fim da sessão da página de entrada de obras com impressão humanizada e acima do que você também compra com o seu livro. A parte de baixo dos botões, problema oculto, e nossa solução fazem com que esta sessão tenha menos espaço para a sessão "Livros que valem a leitura".
+            </div>
+
+            <div class="prompt-card">
+                <div class="prompt-desc">Prompt User Input</div>Não-cadastrados podem adicionar o produto ao carrinho, porém é necessário de ter uma conta para ir para o checkout.
+            </div>
+
+            <div class="prompt-card">
+                <div class="prompt-desc">Prompt User Input</div>Modifique o texto de envio do e-mail para o cliente que finalizar o pedido, adicionando ao final: "Obrigado por testar esta API! Caso tenha alguma dúvida em relação ao funcionamento ou algo em específico, podemos conversar, que tentarei fazer o meu possível para deixar mais elucidado. Entre em contato através do WhatsApp wa.me/5531994217926 ou através do e-mail henriquelimagusmao@gmail.com"
+            </div>
+
+            <div class="prompt-card">
+                <div class="prompt-desc">Prompt User Input</div>- Modifique o preço de "Eu te darei o sol" para 31,99
+
+- Adicionar ao README.md a necessidade de fazer o download do zip e extraí-lo, ou pode-se trabalhá-lo diretamente de uma branch do GitHub
+            </div>
+
+            <div class="prompt-card">
+                <div class="prompt-desc">Prompt User Input</div>Ao comprar mais de 5 produtos o usuário ganha um desconto de 7%:
+Se o usuário clicar em "aumentar" e a quantidade do produto ultrapassar de 2, mostre o seguinte spam agradável: "Garanta um desconto de 7% ao comprar +${5-UNIDADES ATUAIS} unidades".
+            </div>
+
+            <div class="prompt-card">
+                <div class="prompt-desc">Prompt User Input</div>Coloca a mensagem de: "Se você adicionar mais {5- QUANTIDADE ATUAL}, você receberá um desconto de 7% ao final da sua compra" entre quantidades de 1 a 4. Para que, se o usuário comprar cinco ou mais, ele já ganhe um desconto.
+            </div>
+
+            <div class="prompt-card">
+                <div class="prompt-desc">Prompt User Input</div>Adicione o valor por item na parte do carrinho para o usuário pré-visualizar o preço final dos livros
+            </div>
+
+            <div class="prompt-card">
+                <div class="prompt-desc">Prompt User Input</div>Adicione algum feedback visual no checkout (Revisão do Pedido) indicando que, se o usuário quiser adicionar mais algum livro até que dê a quantidade de 5, ele ganhará um desconto de 7% na compra. Também adicione a seção de descontos, indicando R$ de desconto ele ganhou naquela compra.
+            </div>
+
+            <div class="prompt-card">
+                <div class="prompt-desc">Prompt User Input</div>Ao usuário que não tiver conta logada, tentar revisar e pagar o pedido, deve-se aparecer uma mensagem de erro agradável e suave, indicando que "você deve ter uma conta para continuar com esse pedido"
+            </div>
+
+            <div class="prompt-card">
+                <div class="prompt-desc">Prompt User Input</div>Isso não funcionou. Altere, de fato, que, se o usuário não estiver logado, o botão de concluir pedido fica um pouco cinza. Ao usuário tentar clicar no botão, aparece uma mensagem toast que treme um pouco: "Você precisa ter uma conta para continuar com este pedido. Crie a sua ou faça login — é rápido!"
+            </div>
+
+            <div class="prompt-card">
+                <div class="prompt-desc">Prompt User Input</div>A imprementação gráfica do botão, nem o spam funcionaram no Carrinho de compras
+            </div>
+
+            <div class="prompt-card">
+                <div class="prompt-desc">Prompt User Input</div>A mensagem toast ainda não aparece. Ao clicar no botão acinzentado, deve-se aparecer uma mensagem toast: "Você precisa ter uma conta para continuar com este pedido. Crie a sua ou faça login, é rápido!"
+            </div>
+
+            <div class="prompt-card">
+                <div class="prompt-desc">Prompt User Input</div>Ao usuário levar exatamente 5 livros, o desconto não é computado. Adicione essa possibilidade
+            </div>
+
+            <div class="prompt-card">
+                <div class="prompt-desc">Prompt User Input</div>Em checkout (Revisão do pedido), retire o emoji de " 🎉 Desconto 7%"
+Também retire os emojis do carrinho de compras
             </div>
 
         </section>
