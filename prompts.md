@@ -1101,3 +1101,404 @@ Adicione ao README.md da pasta principal DTI:
 - A documentação da API, explicando todos os arquivos, funções, de maneira objetiva e direto ao ponto
 - Adicione neste documento uma seção de "Premissas consideradas". Adicione à estas: O pagamento será feito de forma manual, após a seleção do pedido pelo usuário; O frete será discutido posteriormente; O foco da Gusli Books é divulgar livros ao consumidor, não do usuário procurar um livro para comprar, como na Amazon
 
+### User Input
+
+Corrija os seguintes erros:
+Correção de erro:
+
+- Diminua o tempo de execução da animação da página de entrada
+- Ao abrir a api em outra máquina, as imagens não carregam corretamente. Baseado nas possíveis causas, resolva imediatamente
+
+. Caminhos Absolutos (O culpado nº 1)
+Se no seu código original você escreveu algo como C:\Users\SeuNome\Projeto\imagens\foto.png, o novo computador nunca vai achar esse arquivo, porque a pasta de usuário dele tem outro nome ou o projeto está em outro disco (D:, E:, etc).
+
+Como resolver: use o módulo path do Node.js e a constante __dirname. Isso faz com que o Node descubra onde a pasta do projeto está, não importa o computador.
+
+
+JavaScript
+
+const path = require('path');
+
+// Do jeito certo (Dinâmico):
+const caminhoImagem = path.join(__dirname, 'public', 'imagens', 'foto.png');
+
+
+
+2. Esquecer de Servir Arquivos Estáticos
+Se a sua API é em Express, as imagens não ficam disponíveis automaticamente só porque estão na pasta. Você precisa dizer ao Express que aquela pasta é "pública".
+
+Como resolver: Adicione essa linha no seu arquivo principal (ex: app.js ou server.js):
+
+JavaScript
+
+// Se suas imagens estão numa pasta chamada 'uploads'
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+Agora, se você acessar http://localhost:3000/uploads/minha-foto.jpg, ela deve aparecer.
+
+
+
+
+O Gemini disse
+Esse é o clássico erro do "na minha máquina funciona"! O motivo mais provável é que o seu código está tentando buscar as imagens usando caminhos absolutos em vez de caminhos relativos.
+
+Aqui estão as três causas mais comuns e como resolver cada uma:
+
+1. Caminhos Absolutos (O culpado nº 1)
+Se no seu código original você escreveu algo como C:\Users\SeuNome\Projeto\imagens\foto.png, o novo computador nunca vai achar esse arquivo, porque a pasta de usuário dele tem outro nome ou o projeto está em outro disco (D:, E:, etc).
+
+Como resolver: use o módulo path do Node.js e a constante __dirname. Isso faz com que o Node descubra onde a pasta do projeto está, não importa o computador.
+
+JavaScript
+
+const path = require('path');
+
+// Do jeito certo (Dinâmico):
+const caminhoImagem = path.join(__dirname, 'public', 'imagens', 'foto.png');
+2. Esquecer de Servir Arquivos Estáticos
+Se a sua API é em Express, as imagens não ficam disponíveis automaticamente só porque estão na pasta. Você precisa dizer ao Express que aquela pasta é "pública".
+
+Como resolver: Adicione essa linha no seu arquivo principal (ex: app.js ou server.js):
+
+JavaScript
+
+// Se suas imagens estão numa pasta chamada 'uploads'
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+Agora, se você acessar http://localhost:3000/uploads/minha-foto.jpg, ela deve aparecer.
+
+3. Case Sensitivity (Maiúsculas e Minúsculas)
+O Windows é "preguiçoso": se o arquivo chama Foto.jpg e você pede foto.jpg, ele entrega. No entanto, dependendo de como o Node ou o terminal estão configurados no outro PC (ou se for Linux/Mac), Foto.jpg e foto.jpg são arquivos completamente diferentes.
+
+Dica: Verifique se o nome do arquivo no código está exatamente igual ao nome do arquivo na pasta.
+
+4. Onde a API "olha" (Root Directory)
+Às vezes, ao extrair o ZIP, o projeto fica dentro de uma subpasta (ex: Projeto-Final/Projeto-Final/app.js). Se você abrir o terminal na pasta de cima, mas o código espera estar na de baixo, os caminhos relativos quebram.
+
+Checklist rápido:
+
+Verifique se você deu npm install no novo computador (as dependências não vão no zip).
+
+Confira se o arquivo .env (se existir) foi junto, pois ele costuma guardar a URL base da API.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### User Input
+
+Apague tudo o que não estiver sendo utilizado
+
+
+
+
+
+
+### User Input
+
+Agora as imagens poderão ser vistas em outras máquinas?
+
+
+### User Input
+
+Ao compilar em outra máquina ocorre o seguinte erro. Corrija erros semelhantes para que o mesmo não se repita. 
+O erro JSX value should be either an expression or a quoted JSX text significa que o React encontrou as crases (template literals), mas não entendeu que elas fazem parte de um código JavaScript, porque elas não estão envolvidas por chaves {}.
+
+Como corrigir o erro no Header.jsx
+Vá até o arquivo frontend/src/components/Header.jsx na linha 50 e faça a seguinte alteração:
+
+Como está agora (Errado):
+
+JavaScript
+
+<img src=`${API_URL}/visual/logo.png` alt="Gusli Logo" ...
+Como deve ficar (Correto):
+
+JavaScript
+
+<img src={`${API_URL}/visual/logo.png`} alt="Gusli Logo" ...
+Por que isso causou o erro?
+No React, quando você quer passar um valor dinâmico (uma variável, uma conta matemática ou um template literal com ${}) para um atributo, você precisa colocar tudo dentro de chaves {}.
+
+Com aspas simples/duplas: O React trata como texto comum: src="logo.png"
+
+Com chaves: O React entende que deve executar o JavaScript ali dentro: src={variavel}
+
+
+### User Input
+
+Verifique todos os arquivos para que não ocorram erros
+
+
+
+
+### User Input
+
+Apague todos os arquivos desnecessários
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### User Input
+
+Retire completamente a animação da página de loading para a página principal
+
+
+Minha conta
+- Em status dos pedidos, em caso de houver um pedido, o botão "Aguardando Pagamento" deve ter somente a borda com a coloração verde escura
+
+Contato
+- Altere o e-mail de suporte de "suporte@guslibooks.com.br" para "henriquelimagusmao@gmail.com"
+- Ao selecionar os botões, os ícones não devem ficar verdes
+
+
+
+
+
+### User Input
+
+Adicione novamente a página de loading, com a mesma formatação antiga, só que sem a animação de preencher a página em formato circular. Mantenha o logo e os 4 livros da mesma forma
+
+
+
+
+
+
+### User Input
+
+Altere a cor do rodapé para #FFFDF5
+
+
+
+
+### User Input
+
+Na home:
+Altere "Leitura descomplicada" para: "Seleção de livros que não pegam poeira na estante"
+
+
+
+### User Input
+
+Adicionar a seção "Dúvidas Frequentes" abaixo do "Descubra sua próxima leitura":
+Please create a new "Frequently Asked Questions" (FAQ) section for the GUSLI Books website.
+
+1. Component Architecture (Accordion/Sanfona):
+
+Implement the FAQ as an interactive Accordion component.
+
+By default, all items must be collapsed (retraídos).
+
+Clicking on a question should smoothly expand the container to reveal the answer below it. Clicking again should collapse it.
+
+Match the Accordion's border, padding, and hover styling to the existing buttons and glassmorphism elements on the site to maintain visual consistency.
+
+2. Typography & Colors:
+
+Questions (Visible when collapsed): Must be styled in the project's dark green highlight color (#12271D) with a semi-bold or bold font weight.
+
+Answers (Visible when expanded): Must be styled in standard black (#000000 or a very dark gray like text-gray-900) with a regular font weight.
+
+3. Content to Inject:
+Populate the Accordion with the following Q&A pairs (in Portuguese):
+
+Q: Como realizo o pagamento após enviar o pedido?
+A: A nossa equipe entrará brevemente em contato para confirmar a disponibilidade do material e o prazo de entrega o mais rápido possível através dos meios de contato cadastrados.
+
+Q: Se não gostar do livro, posso devolver?
+A: Como esse é um material impresso por demanda, se categoriza como um personalizado e devoluções não podem ser feitas.
+
+Q: Qual é o prazo de entrega em média?
+A: Nossos prazos de entrega variam conforme as demandas dos nossos clientes e ainda nossas disponibilidades por fornecedores. Da realização do pedido até você estar lendo sua obra preferida, geralmente leva um tempo de sete dias úteis.
+
+Q: Posso sugerir outros livros para o site?
+A: Sim, entre em contato com nossos meios de contato ou visite a sede corporativa para informarmos autores locais, internacionais ou regionais, que podem ser grandes aquisições ao nosso time de royalties.
+
+Q: O que posso fazer depois de terminar de ler o meu livro?
+A: Depois que terminar de ler o seu livro, recomendamos fortemente que reutilize, utilize nossas páginas para alguma coisa produtiva ou elaboração gráfica, ou partilhe com seus amigos e colegas a sua leitura da vez. Acreditamos fundamentalmente que a forma mais fácil de não poluir é não produzir o que não é necessário. Portanto, divida o que você já tem.
+
+Q: Vocês utilizam plástico em algumas das etapas de procedimento?
+A: Não! Todas as etapas da nossa empresa são plástico-free. Inclusive, a nossa embalagem é feita de material reciclável e se decompõe na natureza em apenas três meses.
+
+Q: Posso acompanhar o rastreio do meu pedido?
+A: Sim! Assim que o seu livro for impresso e despachado, enviaremos um código de rastreamento para o seu e-mail cadastrado. Você poderá acompanhar cada etapa da entrega até a sua casa.
+
+Q: Vocês vendem e-books ou apenas livros físicos?
+A: Atualmente, nosso foco é 100% na experiência tátil e sustentável dos livros físicos impressos sob demanda. Por acreditarmos na magia do papel e no compartilhamento físico das obras, não comercializamos versões digitais.
+
+Q: É possível alterar o endereço de entrega após fechar o pedido?
+A: Caso o seu pedido ainda não tenha entrado em fase de produção gráfica, você pode solicitar a alteração entrando em contato rapidamente com o nosso suporte pelos canais de atendimento.
+
+
+
+
+### User Input
+
+Moa, a animação que passa os gêneros literários exatamente como está para a parte de cima do site. Isto é, abaixo do fim da sessão da página de entrada de obras com impressão humanizada e acima do que você também compra com o seu livro. A parte de baixo dos botões, problema oculto, e nossa solução fazem com que esta sessão tenha menos espaço para a sessão "Livros que valem a leitura". 
+
+
+### User Input
+
+Não-cadastrados podem adicionar o produto ao carrinho, porém é necessário de ter uma conta para ir para o checkout.
+
+
+### User Input
+
+Modifique o texto de envio do e-mail para o cliente que finalizar o pedido, adicionando ao final: "Obrigado por testar esta API! Caso tenha alguma dúvida em relação ao funcionamento ou algo em específico, podemos conversar, que tentarei fazer o meu possível para deixar mais elucidado. Entre em contato através do WhatsApp wa.me/5531994217926 ou através do e-mail henriquelimagusmao@gmail.com"
+
+
+
+
+
+
+
+
+
+
+
+### User Input
+
+- Modifique o preço de "Eu te darei o sol" para 31,99
+
+- Adicionar ao README.md a necessidade de fazer o download do zip e extraí-lo, ou pode-se trabalhá-lo diretamente de uma branch do GitHub
+
+
+### User Input
+
+Ao comprar mais de 5 produtos o usuário ganha um desconto de 7%:
+Se o usuário clicar em "aumentar" e a quantidade do produto ultrapassar de 2, mostre o seguinte spam agradável: "Garanta um desconto de 7% ao comprar +${5-UNIDADES ATUAIS} unidades".
+
+
+### User Input
+
+Coloca a mensagem de: "Se você adicionar mais {5- QUANTIDADE ATUAL}, você receberá um desconto de 7% ao final da sua compra" entre quantidades de 1 a 4. Para que, se o usuário comprar cinco ou mais, ele já ganhe um desconto.
+
+
+### User Input
+
+Adicione o valor por item na parte do carrinho para o usuário pré-visualizar o preço final dos livros
+
+
+### User Input
+
+Adicione algum feedback visual no checkout (Revisão do Pedido
+)i ndicando que, se o usuário quiser adicionar mais algum livro até que dê a quantidade de 5, ele ganhará um desconto de 7% na compra. Também adicione a seção de descontos, indicando R$ de desconto ele ganhou naquela compra.
+
+
+### User Input
+
+Ao usuário que não tiver conta logada, tentar revisar e pagar o pedido, deve-se aparecer uma mensagem de erro agradável e suave, indicando que "você deve ter uma conta para continuar com esse pedido"
+
+
+### User Input
+
+Isso não funcionou. Altere, de fato, que, se o usuário não estiver logado, o botão de concluir pedido fica um pouco cinza. Ao usuário tentar clicar no botão, aparece uma mensagem toast que treme um pouco:  "Você precisa ter uma conta para continuar com este pedido. 🔐
+Crie a sua ou faça login — é rápido!"
+
+
+
+
+### User Input
+
+A imprementação gráfica do botão, nem o spam funcionaram no Carrinho de comprs
+
+
+### User Input
+
+A mensagem toast ainda não aparece. Ao clicar no botão acinzentado, deve-se aparecer uma mesnagem toast:  "Você precisa ter uma conta para continuar com este pedido. Crie a sua ou faça login, é rápido!"
+
+
+### User Input
+
+Ao usuário levar exatamente 5 livros, o desconto não é computado. Adicione essa possibilidade
+
+
+### User Input
+
+Em checkout (Revisão do pedido), retire o emoji de " 🎉 Desconto 7%"
+Também retire os emojis do carrinho de compras
+
+
+
+
+
