@@ -1,0 +1,1103 @@
+You are an expert full-stack developer and UI/UX designer. Your task is to build a high-performance, well-architected e-commerce proof-of-concept called "GUSLI Books". You must adhere strictly to the following architectural, functional, and design constraints.
+Write clean, modular code following DRY principles. Provide clear separation of concerns (layers, components, services). Make sure there is a step-by-step guide on how to install, build, and run both the frontend and backend locally. Make sure the code is simple ro read and use the least number of lines as possible
+
+Implementation Plan
+1. Architecture & Setup
+* Tech Stack:React (Frontend), Node.js with Express (Backend), SQLite (Database).
+* Tooling:Tailwind CSS for styling, Jest for simple tests, Swagger for API documentation.
+* Data Ingestion Script:Create a Node.js script to read `livros.txt`, parse the `book;author;genre;subgenre;subgenre` format, and seed the SQLite database upon initialization.'
+
+2. Backend Development (Node.js + SQLite)
+* Schema:`Products` (id, name, author, description, price, image_path, variations, continuations).
+* API Routes:
+* `GET /api/products` (returns list of books, supports randomizing 4 books for the homepage).
+* `POST /api/cart` (add item, validate max 10/min 1).
+* `PUT /api/cart` (update quantity, validate max 10/min 1).
+* `DELETE /api/cart/:id` (remove item).
+* `POST /api/checkout` (simulated checkout, returns success status).
+
+3. Frontend Development (React + Tailwind)
+* UI Foundation:Implement the color palette (#FFFDF5, #DFDAC6, #12271D), layout component (Header, Main, Footer), and responsive design.
+* Home Page:Fetch and display 4 random book covers on load. Build the "AdOptOut" privacy banner.
+* Product Listing:Display books with logic for variations (e.g., color selection for *Frankenstein*) and links to continuations. Use local paths (`C:\Users\Henrique Lima\Desktop\dti\visual`) for assets.
+* Cart Flow:Implement modal/page, calculate subtotal/total, persist state in `localStorage`, and add toast feedback ("Item added").
+* Checkout:Connect simulated checkout endpoint, show success screen, and clear `localStorage` cart.
+
+---
+File Paths to utilize:
+* Visual Assets (Images/Video): C:\Users\Henrique Lima\Desktop\dti\visual
+* Product Database Source: C:\Users\Henrique Lima\Desktop\dti\livros.txt (Format: book;author;genre;subgenre;subgenre)
+
+Technology Stack:
+* Backend: Node.js with Express and SQLite. Follow RESTful principles.
+* Frontend: React with Tailwind CSS for componentized styling.
+
+Backend Requirements:
+Create a script to parse the livros.txt file and populate the SQLite database with id, name, description, price, and image.
+Implement the following endpoints with strict error handling:
+
+* GET /products: Return product list.
+* POST /cart: Add item to cart.
+* PUT /cart: Change quantity (Validation: minimum 1, maximum 10 per product).
+* DELETE /cart: Remove item.
+* POST /checkout: Receive cart, mark as sent, clear cart, return a success message. No real payment gateway needed.
+Include a detailed Swagger setup or comprehensive README for the API.
+
+Frontend Requirements:
+Build a highly responsive layout with smooth animations and transitions.
+Ensure top-tier mobile and web performance.
+Include a "We value your privacy (AdOptOut)" banner on first load.
+Color Palette:
+
+* Default Background, Header, Footer: #FFFDF5
+* Highlight Background 1: #DFDAC6
+* Highlight Background 2: #12271D
+
+Features & State Management:
+* Homepage: Display exactly 4 random book covers immediately upon opening the website.
+* Product Listing: Consume the backend API to show product cards with name, description, price, image, and an "Add to cart" button.
+* Cart: Implement a slide-out modal or dedicated page showing subtotal per item and grand total. Persist cart data using localStorage. Include functional quantity modifiers (1-10 limit) and removal buttons. Use toast notifications for feedback (e.g., "Product added successfully").
+* Checkout: A finalization button that triggers a success screen/message and clears the frontend cart state.
+
+Specific Product Logic to Implement:
+Extract the books from the provided txt file and integrate these specific variations and continuations into the UI:
+* Variations (Allow user to select cover option):
+* "Não Quero Ser Como Você": Verde, Vermelha, Amarela
+* "Vermelho, Branco e Sangue Azul": Vermelho, Azul
+* "Frankenstein": Old Forest, Green Hospital
+
+* Continuations (Display as "Next in series" or related links):
+* "Os dois Morrem no final" --> "O Primeiro a Morrer no Final"
+* "Simon vs. a Agenda Homo Sapiens" --> "Leah Fora de Sintonia"
+* "O Guia do Mochileiro das Galáxias" --> "O Restaurante no Fim do Universo" --> "A Vida, o Universo e Tudo Mais"
+* "1984" --> "A Revolução dos Bichos"
+* "Procura-se um Namorado" --> "Esse é Para Casar"
+
+### User Input
+
+Explain what this problem is and help me fix it: Unknown at rule @tailwind @[c:\Users\Henrique Lima\Desktop\dti\frontend\src\index.css:L3]
+
+### User Input
+
+This is a refinement prompt to correct visual and rendering issues on the GUSLI Books React front-end created from previous instructions. Follow these specific instructions to fix the CSS and implement the Homepage Hero Video.
+
+Assets and References:
+
+Video file: C:\Users\Henrique Lima\Desktop\dti\visual\video.mp4
+
+Design/Architecture reference folder: C:\Users\Henrique Lima\Desktop\dti\good-to-see
+
+Color Palette Reminder:
+
+Default: #FFFDF5
+
+Highlight 1: #DFDAC6
+
+Highlight 2: #12271D
+
+Action 1: Fix and Verify Tailwind CSS Integration
+
+Ensure tailwind.config.js is correctly configured to scan all React component files in the ./src/ directory.
+
+Verify that the main CSS entry point (index.css or similar) contains the mandatory @tailwind base;, @tailwind components;, and @tailwind utilities; directives.
+
+Confirm that the main CSS file is correctly imported in the React entry point (index.jsx or App.jsx).
+
+Ensure all generated components are using Tailwind utility classes (className="...") instead of inline styles for all layouts, typography, and colors.
+
+Action 2: Redesign Homepage to Include Background Video
+
+Redesign the Homepage to incorporate a Hero Section that utilizes the video at C:\Users\Henrique Lima\Desktop\dti\visual\video.mp4 as a full-width background element.
+
+Implement the "transparent video" or "blended" visual aesthetic found in C:\Users\Henrique Lima\Desktop\dti\good-to-see. This means the video should not have distinct borders; it should be integrated into the background color flow or use masking/blending effects to create a seamless, modern feel.
+
+The video must autoplay (muted, loop) and act as an atmospheric backdrop for the Hero content (e.g., site title "GUSLI Books" and a CTA button). Ensure high contrast for overlayed text using the defined palette (Dark text on light video parts, or light text on a subtle dark video overlay).
+
+Place the existing "random 4 books covers" section below this new Video Hero section.
+
+Action 3: Responsive and Modern Design Enforcement
+
+Explicitly apply Tailwind’s responsive modifiers (sm:, md:, lg:) to the video hero section, product cards, and navigation header.
+
+Ensure the video scales gracefully without clipping critical visual data on mobile viewports.
+
+Maintain all previous functionality (Privacy Banner, Product Listing, Cart Logic, Simulated Checkout, product variations, and continuations logic).
+
+Action 4: Updated Execution Instructions
+Update the README with clear instructions on how to start the project to view the video, acknowledging that local absolute paths are used for this POC.
+
+### User Input
+
+Your task is to implement the Mercado Pago payment API integration using the specific test credentials provided below.
+
+Project Context:
+
+Operating Country: Brazil
+
+Application Number: 1160066376869627
+
+User ID: 3240514561
+
+Authentication Keys (Use these for the POC):
+
+Public Key (Frontend): APP_USR-4a792049-a6b0-493f-8091-77c5a57dc6a0
+
+Access Token (Backend): APP_USR-1160066376869627-030314-e2e13c2dc51ba0a00fd7075d3557a018-3240514561
+
+Test User Accounts (for testing the checkout flow):
+
+User: TESTUSER3781043468446915651
+
+Password: YHGzygnUpd
+
+Verification Code: 514561
+
+Backend Implementation (Node.js):
+
+Install mercadopago.
+
+Configure the SDK using the provided Access Token. Keep good practices by setting this up via a .env file, but use the token provided above as the default for this test environment.
+
+Create the POST /create_preference endpoint to receive the cart array. Map the cart items to the items array format required by Mercado Pago (id, title, quantity, unit_price).
+
+Return the preferenceId to the frontend.
+
+Frontend Implementation (React):
+
+Install @mercadopago/sdk-react.
+
+Initialize the Mercado Pago instance using the provided Public Key.
+
+In the Cart Checkout step, call the /create_preference endpoint. Upon receiving the preferenceId, render the Checkout Pro Wallet component.
+
+Integrate the payment button UI with the existing color palette (#FFFDF5, #DFDAC6, #12271D).
+
+Update the README with clear instructions on how to start the application with these specific environment variables.
+
+### User Input
+
+1. Referências de Design:
+
+Baseie as melhorias visuais e de UI na seguinte referência: https://yucca.co.za/
+
+Utilize os documentos e a arquitetura do ficheiro local: C:\Users\Henrique Lima\Desktop\dti\good-to-see
+
+2. Interface e Estilo Visual (UI):
+
+Tipografia: Atualize a fonte da página inicial e das páginas de produtos para que corresponda à tipografia do site de referência.
+
+Cores Base: O cabeçalho e o rodapé devem ter o fundo na cor branca.
+
+Ecrã de Carregamento (Splash Screen): Ao aceder ao site, apresente uma animação inicial a exibir quatro pequenos livros. Após este carregamento, o utilizador deve aceder à loja.
+
+Banner Principal (Hero Video): Imediatamente abaixo do cabeçalho na página inicial, implemente o vídeo de fundo. Ajuste a transparência/opacidade do vídeo para garantir o contraste perfeito e a legibilidade do seguinte texto sobreposto: "Goosely Books, a melhor seleção de livros num só lugar, uma experiência de compra ágil e com as melhores obras para o encantar."
+
+3. Funcionalidades do Catálogo:
+
+Filtros: Na secção de livros, adicione um sistema de filtragem por género. Os cartões de produto devem focar-se no nome do livro e reorganizar-se de forma fluida conforme a seleção.
+
+Descoberta: Adicione um botão para selecionar e sugerir um livro de forma aleatória ao utilizador.
+
+Páginas de Detalhes: Crie uma página de produto individual para cada livro. Importe automaticamente da internet uma descrição/sinopse interessante e relevante para preencher a página de cada obra.
+
+### User Input
+
+1. Visual & UI Redesign (Based on Yucca References):
+
+Loading Screen / Splash: Create a loading screen that displays 4 small book icons. Overlay this with a moving, continuous text line (marquee animation) featuring frequent literary words (e.g., "Narrative, Imagination, Chapters, Journey, Storytelling").
+
+Category Selector (Glassmorphism): Create a section with 3 distinct buttons for genres: "Romance", "Suspense", and "Terror". These buttons and their container must have a transparent, glass-like background (backdrop-blur in Tailwind). Clicking a button must dynamically change the background image of that section and immediately filter the product list to show the selected genre.
+
+Promotional Banner: Implement a dark, high-contrast hero banner (similar to the Yucca reference) with large, editorial typography. The text must read: "An exclusive selection of books worth reading. Books you will actually read, not just leave gathering dust."
+
+2. Bug Fixes & Catalog Updates:
+
+Product Description Bug: Fix the state management bug where the individual product page text reverts to the short preview text. Implement strict separation: use short_description for the product catalog cards, and long_description (fetch an interesting placeholder synopsis) exclusively for the individual product page.
+
+Pricing: Update the backend database seed script. Force all product prices to be randomly generated between 29.90 BRL and 59.90 BRL.
+
+3. Payment Integration Fix (Mercado Pago):
+
+Fix the Mercado Pago integration. Ensure the cart calculates the exact grand total properly.
+
+The backend POST /create_preference must map the exact cart total and items.
+
+The frontend must successfully receive the preferenceId and open the Mercado Pago payment options directly in the UI, allowing the user to complete the flow.
+
+4. New Feature: "My Account" Section:
+
+Build a user dashboard interface matching the clean, minimalist design of the rest of the site.
+
+Implement frontend routes and backend simulated endpoints for:
+
+Creating a new account (Sign Up).
+
+Verifying user profile data.
+
+Viewing order history (Placed orders).
+
+Viewing order status (Ready/Shipped orders).
+
+Ensure all code follows DRY principles, uses Tailwind CSS effectively for all animations and responsive designs, and provides clear error handling.
+
+1. Navigation & Smooth Scrolling:
+
+Enable smooth scrolling behavior globally across the CSS.
+
+Add a "Books" navigation link to the main header.
+
+Implement a smooth dropdown menu that appears when hovering over the "Books" link, displaying a list of all available genres.
+
+When a user clicks a genre from this dropdown, navigate to the product catalog, display the selected genre's name in a large, prominent heading, and filter the book grid accordingly.
+
+Include a clear "View all products" button in the UI to reset filters and display the entire catalog.
+
+2. Header Styling & Product Recommendations:
+
+Change the main header's background color to the project's green highlight color (#12271D), ensuring the text and logo contrast well (e.g., using white).
+
+On individual product detail pages, append a "Recommendations" panel directly below the main description. This panel must render a grid or carousel of similar books based on the current item's genre, author, or series continuation.
+
+3. Sidebar Layout & Price Filtering:
+
+Restructure the product listing page by moving the category/genre selection menu to a dedicated left-hand sidebar.
+
+Add a custom price filter within this new sidebar. It must include an input field where the user can manually type their maximum budget, which should dynamically filter the displayed books based on the entered amount.
+
+4. Typography Update:
+
+Update the global font family and typography styles to strictly match the reference design provided previously (yucca.co.za).
+
+### User Input
+
+* Remove the following genres from the catalog filters and database: Historical Fantasy, Dark Fantasy, Commercial Fiction, Contemporary Fiction, Existentialist Fiction, Historical Fiction, Cosmic Horror, Classic Literature, Political Satire, and Psychological Terror.
+* Automatically map and reassign any books belonging to these removed genres to the most visually or thematically similar remaining genre. No book should be left uncategorized or missing from the store.
+
+* Enable global smooth scrolling behavior.
+* Fix the Homepage Hero Video so it properly loads and auto-plays on the entry page.
+* In the "Discover your new genre" section: Remove all visible borders from the buttons. The buttons should look like floating transparent elements (glassmorphism) without hard edges.
+
+* **Header & Footer:** Add a "My Account" link (directing to user profile/info) and a "Contact" link to both the main header and the footer.
+* **Filter Sidebar:** Move the product filters from their currently disorganized layout into a clean, logical left-hand sidebar, following standard modern e-commerce UI patterns.
+
+* Immediately below the "Exclusive Recommendations" section, add a new visual block.
+* Implement a CSS infinite marquee animation with continuous moving text featuring the most common literary words found in the store's books.
+* Overlay this moving text on top of the same book icon that was used for the initial loading/splash screen.
+
+* Improve the shopping bag flow: Add a clear "Review Order" step or button.
+* Strictly enforce quantity validations in the cart UI: Minimum of 1 book, Maximum of 10 per product. Prevent the user from typing or clicking beyond these limits.
+* Ensure the "Remove item" button (trash can or 'X' icon) is highly visible and easy to interact with.
+
+
+Implement a dictionary or mapping function during the data ingestion phase. Apply the following strict categorization rules before inserting records into the `Products` table:
+
+* Map "Cosmic Horror" and "Psychological Terror" -> **"Terror"** (or "Suspense" if "Terror" is merged)
+* If a book's genre from the `.txt` file does not match the active categories and is not covered by the mapping above, assign it to a default category (e.g., **"Fiction"** or **"General"**).
+* Log a warning in the console during seeding if a fallback is triggered, but **do not drop the book**. Every item must be inserted into the database.
+
+* Ensure the SQLite insertion query updates the `genre` column using these mapped values, not the raw values from the text file.
+* This ensures the new left-hand sidebar filters in the frontend will immediately recognize and display all books without empty categories.
+
+
+ Frontend Routes: Create /account page with Sign Up, Profile Data, Order History, and Order Status tabs.
+6. Mercado Pago Verification
+ Checkout Logic: Verify exact cart total calculation and mapping in 
+server.js
+ and 
+CartModal.jsx
+ for the preference payload.
+
+1. Frontend UI:
+
+Add the project's logo as the website's favicon to improve branding and browser tab identification.
+
+2. Backend Security & Dependency Resolution:
+
+Resolve the critical and high-severity vulnerabilities reported by npm audit in the Node.js backend.
+
+Actionable Steps:
+
+Update the sqlite3 dependency in package.json to the latest secure version (e.g., >=5.1.7). This will automatically resolve the nested vulnerabilities related to node-pre-gyp and tar.
+
+Identify and replace or remove completely deprecated root packages that are causing warnings (e.g., request, osenv, har-validator, uuid@3). Use modern standard alternatives if necessary (like native fetch or axios instead of request, and uuid@10).
+
+Regenerate the package-lock.json file. Ensure that running npm install results in a clean installation without high or critical severity vulnerabilities.
+
+### User Input
+
+Em relação ao que foi colocado no README, esse arquivo já foi integrado para que seja possível acessar e deletar do README após estar 100% operacional.
+##   Testing Mercado Pago Checkout Integration
+
+This POC is integrated with **Mercado Pago Checkout Pro**. To test the checkout flow, you should use the following credentials.
+
+1. Create a `.env` file in the **backend** folder:
+   ```env
+   MP_ACCESS_TOKEN=APP_USR-1160066376869627-030314-e2e13c2dc51ba0a00fd7075d3557a018-3240514561
+   ```
+2. Create a `.env` file in the **frontend** folder:
+   ```env
+   VITE_MP_PUBLIC_KEY=APP_USR-4a792049-a6b0-493f-8091-77c5a57dc6a0
+   ```
+3. Restart both the backend and frontend servers `npm start` and `npm run dev`.
+4. Proceed to Checkout in the frontend Cart. 
+   When prompted by Mercado Pago to authenticate/pay, use the following **test account** credentials:
+     * **User:** `TESTUSER3781043468446915651`
+     * **Password:** `YHGzygnUpd`
+     * **Verification Code:** `514561`
+
+- Adicione um logo novamente ao cabeçalho.
+- Traduz a todas as informações do site para que ele fique no português.
+- Adicione novamente todos os títulos dos quais foram retirados na última versão de modificação na seção da conta.
+- Adicione uma operabilidade para que, de fato, o usuário consiga fazer a conta e administrar a sua conta.
+- Faça com que a integração com o Mercado Livre seja operacional.
+- Adicione todas as subdivisões novamente e preço de livro, sendo possível de fato conseguir fazer essa integração.
+- Passe a sacola de itens para o canto do superior direito e substitua a conta por Minha Conta.
+
+
+### User Input
+
+1. Catálogo e Preços
+
+Filtros e Seções: Atualize as seções e subseções do site para que reflitam estritamente as categorias de livros existentes no banco de dados/lista atualizada. Remova categorias vazias.
+
+Padronização de Preços: Ajuste o valor de todos os livros. O preço deve ser gerado aleatoriamente entre R$ 30,00 e R$ 60,00, mas deve obrigatoriamente terminar com ,99 (ex: R$ 34,99, R$ 59,99).
+
+2. Carrinho e Fluxo de Checkout
+
+Gestão de Itens no Carrinho: Conserte o bug que impede a remoção de produtos do carrinho.
+
+Quantidade e Limites: Permita que o usuário altere a quantidade de um mesmo item (de 1 a 10). Se o usuário tentar adicionar mais de 10 unidades do mesmo livro, bloqueie a ação e exiba um alerta visual (toast notification/modal) informando que o limite máximo é de 10 unidades por pedido.
+
+Integração Mercado Pago/Livre: Corrija a inicialização da API do Mercado Pago. Ao clicar em 'Revisar e processar o pedido', o sistema deve conectar corretamente com a API, sem exibir a mensagem de erro grotesca ('Erro ao conectar com o mercado pago' / 'falha no check-out'). O redirecionamento para o pagamento deve ocorrer de forma fluida.
+
+3. Interface e Experiência do Usuário (UI/UX)
+
+Tipografia: Substitua a fonte atual pela fonte exata utilizada no site de referência. Toda a tipografia deve ser corrigida para corresponder ao design original.
+
+Esquema de Cores: Remova o tom amarelado do fundo/elementos. Utilize exclusivamente o fundo branco definido nos prompts de design anteriores.
+
+Logo: Substitua o espaço em branco no cabeçalho pelo logo oficial do projeto.
+
+Animação da Página Inicial: Remova o vídeo do banner principal. Em seu lugar, crie uma animação de fundo utilizando elementos visuais que remetam à computação (linhas de código, nós de rede ou formas geométricas conectadas). Na mesma área, insira o ícone principal multiplicado, com uma rotação contínua.
+
+4. Autenticação e Páginas Institucionais
+
+Minha Conta: Corrija o erro que ocorre na criação de conta do cliente. Dentro do painel 'Minha Conta', adicione uma funcionalidade ou link para que o usuário consiga acessar seu e-mail cadastrado.
+
+Página de Contato: Preencha a página de contato com dados fictícios completos (endereço, telefone, e-mail de suporte)."
+
+### User Input
+
+O botão de enviar para lixeira não está funcionando.
+
+O botão de adicionar mais livros iguais não está funcionando nos livros que tem mais de um tipo.
+
+A integração com o Mercado Pago ainda não está funcionando e não é possível deletar livros com mais de um tipo de tipo no logotipo ao lado dele.
+
+Adicione "Goosly Books" na página inicial na hora de entrar no site. Retire o logo junto ao círculo rodante que está acontecendo atualmente para vários livrozinhos com logo utilizado na página de entradas de livro, que ficam se movendo de forma ordenada.
+
+Melhora nos aspectos do UX e UI do site. Na página inicial, retire o icone de transparente e diminua o tamanho da letra que está fazendo a rodagem. Coloque todos os tipos de livro ali.
+
+### User Input
+
+Ao clicar no "Revisar e pagar o pedido", nada acontece. Resolva isso imediatamente.
+- Modifique a fonte do site para uma que tenha na plataforma Goosly Websites.
+- Diminua a velocidade dos gêneros que passam na página inicial.
+- Conecte estes a fim de que fique uma rolagem infinita.
+- Diminua o tamanho desta seção e somente adicione os tipos de livro que existem no site.
+- Quando o usuário passar o cursor nos tipos de livro na parte de "Descubra seu novo gênero", ao passar o mouse, deve aparecer uma roda com todas as opções, em que chegar para a direita ou esquerda movimenta para a esquerda e para a direita suavemente a roda, permitindo selecionar um tipo.
+- Quando clicar, deve ser direcionado automaticamente para o filtro estabelecido.
+- Retirem todos os ícones e o código de fundo da página inicial. Trabalharemos ela para frente.
+
+### User Input
+
+Não é possível revisar e apagar o pedido. Conserte e somente finalize o prompt quando você terminar de resolver esse problema. Ao clicar no "Revisar e apagar pedido", deve ser redirecionado para uma página em que pede alguns dados e já direciona o usuário para apagar o pedido. 
+
+### User Input
+
+No campo de CPF, adicione uma verificação para que o número seja equivalente aos padrões do Governo Brasileiro.
+
+No campo do e-mail, deve-se ter a terminação.alguma coisa.
+
+O endereço de entrega, o CEP, deve ser primeiramente digitado para ser integrado ao endereço final com a cidade, estado e bairro, automaticamente auto-endereçados. Somente o número e o complemento devem ser preenchidos. O resto deverá ficar em estático, integrando uma API que consiga visualizar tudo isso que foi comentado. Ainda assim, após tudo isso, o botão de integração com o mercado pago ainda não funciona
+
+### User Input
+
+Na página de abertura, adicione em branco com Guzli livros.
+
+Na parte "Descubra seu novo gênero", transfunde seleção em uma roda possível de deslizar com o mouse para girar para esquerda e para direita.
+
+Na parte onde tem as palavras "os gêneros que ficam movimentados", coloque de modo que nunca exista um espaço em branco e que fique no loop infinito, não indicando onde começou e parou. Conserte o erro de ir para o pagamento.
+
+### User Input
+
+Adicione o texto "Gusli Books" posicionado exatamente ao lado do logotipo.
+
+Substitua as palavras "Narrative" e "Imagination" no cabeçalho por categorias de gêneros literários dos livros do site
+
+Ajuste o CSS para centralizar perfeitamente os ícones dos quatro livros flutuantes na página de loading (alinhamento vertical e horizontal no container).
+
+Reduza o font-size do texto animado que fica se movendo na tela de loading.
+
+Transforme o "Descubra Seu Novo Gênero" em um menu circular (roda). Comportamento de Hover: Esse menu circular deve ficar oculto por padrão. Ele só deve aparecer quando o usuário posicionar o mouse (hover) sobre a descrição da área. Animação: Ao passar o mouse sobre as opções desse círculo, a roda deve girar levemente e permitir a seleção do gênero textual.
+
+Dados: O livros.txt já foi atualizado com o número de páginas. Na última seção, adicione a propriedade de filtro "número de páginas" que consiga selecionar o livro pelo número de páginas. Deve-se ter criado um filtro do tipo RangeSlider, barra de arrastada esquerda para direita que defina o número máximo de páginas em cada um dos livros ao serem clicados para ver mais sobre a descrição. Integre esse slider com o estado do React (useState) para que a listagem de livros seja filtrada em tempo real na tela conforme o usuário arrasta o controle.
+
+### User Input
+
+Prompt 1: Estilo Global e Tipografia
+
+"Act as an award-winning Awwwards UI/UX designer. Redesign the global styles of the website to match a high-end digital flagship store. Apply a high-contrast editorial color palette. Implement oversized, brutalist typography for all main headings, paired with a clean sans-serif for body text. Enforce massive negative space and asymmetrical layouts. The navigation bar must be sticky, ultra-minimalist, with transparent backgrounds and sleek, modern hover animations."
+
+Prompt 2: Seção Hero e Carregamento (Pre-loader)
+
+"Redesign the hero section into a full-bleed, immersive experience. First, create a custom pre-loader using dynamic typography or minimalist book shapes that transition smoothly into the home page. The hero area must feature a high-quality background video with a subtle dark overlay. Place the main headline ('Uma seleção exclusiva...') in giant typography that features smooth parallax effects on scroll. Replace standard buttons with custom, magnetic call-to-action buttons."
+
+Prompt 3: Grid de Produtos e Filtros Editoriais
+
+"Transform the standard product showcase into an asymmetrical, editorial-style 'broken grid'. Remove the basic white card backgrounds behind the books. Product covers should be large and feature a smooth scale-up hover effect, ideally paired with a custom cursor. Redesign the circular genre menu into a sleek, text-based interactive filter that re-sorts the grid instantly using fluid layout animations (similar to GSAP transitions). Add a floating 'Random Selection' button with a glassmorphism effect."
+
+### User Input
+
+Localization & Header: > - Translate all navigation and UI texts to Portuguese (PT-BR). Change 'Shop' to 'Loja', 'Info' to 'Informações', and 'Cart' to 'Carrinho'.
+Insert the brand logo into the header.
+Ensure the brand name is written as 'Gusli'.
+
+'Descubra Seu Novo Gênero' Section:
+Decrease the overall height and padding of this section to make it more compact.
+Add 6 distinct buttons for different literary genres that redirect the user to their respective filtered views.
+Completely remove any visual or structural references to Mercado Pago from this section.
+
+### User Input
+
+All the following items were modifed? 
+Gusli Books - Awwwards Redesign Tasks
+1. Global Setup
+ Typography: Inject Anton and Inter Google Fonts into 
+index.html
+.
+ Tailwind Config: Wire up new fonts and the high-contrast editorial color palette (
+tailwind.config.js
+).
+ Global CSS: Add a custom cursor and smooth hiding utility classes in 
+index.css
+.
+ Ultra-minimal Navbar: Refactor 
+Header.jsx
+ to be sticky, transparent, and blur on scroll.
+2. Pre-loader & Hero Experience
+ Dynamic Pre-loader: Overhaul 
+SplashScreen.jsx
+ to use kinetic typography.
+ Full-bleed Video Hero: Add a repeating background video to 
+Home.jsx
+.
+ Oversized Typography & Parallax: Apply font-display (Anton) to the giant header and attach a scroll listener for parallax.
+ Magnetic Button: Implement magnetic hover physics for the main CTA.
+3. Editorial Product Grid
+ Broken Grid Layout: Refactor 
+Products.jsx
+ to display a staggered masonry-like grid, removing card containers so book covers float.
+ Scale-up Hover: Apply large cover scale-ups on hover.
+ Text-Based Filters: Redesign the genre selection into a fluid, inline text block filter.
+ Glassmorphism Floating Button: Move the random generator to a sticky glass floating button.
+
+### Planner Response
+
+Sim! Absolutamente todos os itens dessa lista de redesign (Awwwards UX/UI) foram modificados e implementados ao longo dessa sessão. Refizemos praticamente o front-end inteiro para adotar a nova estética.
+ 
+ Aqui está um resumo do que fizemos em cada um deles:
+
+- As fontes **Anton** e **Inter** foram injetadas no arquivo HTML principal.
+- O **Tailwind.config.js** foi atualizado com as famílias de fontes e as cores de altíssimo contraste (`gusli-bg`, `gusli-highlight-1`, etc.).
+- O sistema ganhou o **cursor customizado** via [index.css](cci:7://file:///c:/Users/Henrique%20Lima/Desktop/dti/frontend/src/index.css:0:0-0:0) e o scroll nativo foi ocultado.
+- A **Navbar (Header.jsx)...** foi reconstruída como um elemento sticky, minimalista e com o logo incorporado.
+
+- A **SplashScreen.jsx** agora é um pré-carregador cinemático usando sobreposição de ruído e texto gigante intercalado.
+- A página inicial (**Home.jsx**) tem agora o hero em tela cheia com o vídeo de fundo renderizado atrás do título.
+- A **Tipografia gigante (Parallax)** foi perfeitamente adaptada.
+- O **Botão Magnético** que interage com o cursor também está funcional.
+
+- Em **Products.jsx**, removemos totalmente a sensação "encaixotada" dos cards. Agora, os livros flutuam numa malha que prioriza o espaço vazio.
+- O recurso estético de **Scale-up Hover** traz o livro "para perto" da tela instintivamente quando o mouse fica sobre as capas.
+- O filtro em lista foi transformado num seletor **Tipográfico Horizontal**.
+- O velho botão "Surpreenda-me" agora é um elemento flutuante em glassmorphism amarrado à tela.
+
+Você pode conferir as mudanças localmente através da aba principal. Acabei de dar "check" final na nossa lista de tarefas técnica do sistema ([task.md](cci:7://file:///c:/Users/Henrique%20Lima/.gemini/antigravity/brain/8702d4c7-65e0-4ebd-8f51-c272b90d0a32/task.md:0:0-0:0)).
+
+Tudo pronto! Se houver mais algum comportamento para refinar (como outras rotas), é só me avisar.
+
+### User Input
+
+Adicione novamente a página de carregamento, com os quatro ícones dos livros pulando, enquanto há uma circulação dos elementos, dos gêneros que comercializamos no livro.
+Na página de entrada:
+- aumente o logo
+- retire a bola preta do lado do Goosly e modifique para Goosly Books
+- adicione a mesma fonte em todo o site
+- não deve-se ter nada somente em caps lock
+- deixe os livros retos, pois atualmente está um em cima, um embaixo e um em baixo
+Na parte da loja, ao clicar no botão loja, deve ser automaticamente redirecionado para ver todos. Ao clicar na seção de produtos ou qualquer um dos filtros já definidos, ocorre um erro e não é possível visualizar a página. 
+
+### User Input
+
+1. Global Styles & Usability:
+
+Color Palette: Strictly use pure White, #FFFDF5, and #DFDAC6.
+
+Typography: Do not use any shades of gray for fonts or elements. All text must be highly visible and readable using the allowed palette or pure black/green where specified.
+
+Cursor: Remove the custom cursor completely and restore the default system pointer.
+
+2. Header & Logo:
+
+Ensure the main header has a solid white background after the initial loading sequence.
+
+Remove all drop shadows from the logo immediately, as it is distorting the site's color scheme.
+
+3. Pre-loader & Hero Section:
+
+Loading Screen: The books and genre text must be colored black and green. Increase the font size and speed up the loading animation.
+
+Hero Layout: Remove the 'Explore' CTA button from the initial view. Adjust the viewport height so that a portion of the white 'Recomendações Exclusivas' section is already visible at the bottom of the screen upon loading.
+
+4. 'Descubra seu novo gênero' Section:
+
+Isolate this into its own distinct section.
+
+Invert the color scheme here by using the brand's green as the background color.
+
+5. Products & 'Obras literárias' Grid:
+
+Decrease the overall size of the book covers to improve user browsing usability.
+
+Add a solid border around each book cover using the site's primary highlight colors.
+
+6. Cart & Checkout:
+
+Completely remove the 'Revisar e apagar pedido' (Review and delete order) button from the interface."
+
+*User accepted the command `python -c "import os, glob
+import re
+
+for filepath in glob.glob(r'C:\Users\Henrique Lima\Desktop\dti\frontend\src\**\*.jsx', recursive=True):
+    with open(filepath, 'r', encoding='utf-8') as f:
+        content = f.read()
+    
+    new_content = content.replace('cursor-none', '')
+    new_content = new_content.replace('custom-cursor', '')
+    new_content = new_content.replace('bg-[#111111]', 'bg-white border border-[#DFDAC6]')
+    
+    if new_content != content:
+        with open(filepath, 'w', encoding='utf-8') as f:
+            f.write(new_content)
+        print(f'Updated {filepath}')"`*
+
+### User Input
+
+Retire a escrita scroll da página de inicialização. Suba o texto da página, o futuro da curadoria editorial, uma seleção exclusiva.
+
+Nas Recomendações Exclusivas, assim como todos os livros da Loja e todos os livros, todas as obras literárias, devem ter uma borda que indica que é um botão. E todo o texto deve estar em preto. Não pode ter nenhum texto no site sem estar em preto ou em verde.
+
+Na parte de Filtros, por exemplo, é impossível ver a seleção porque o texto está em uma cor que é impossível de ler.
+
+Na parte de "Descubra seu novo gênero", coloque o fundo dessa seção em verde, no verde que foi definido como padrão. E retire a parte cinza das páginas de entrada.
+
+Aumente o tamanho do logo e retire qualquer coisa que for cinza ou próxima de cinza do site. Essa cor não pode existir.
+
+*User accepted the command `python -c "import os, glob
+
+def replace_colors(content):
+    # Remove text-white, text-gray-*, text-gusli-highlight-1, text-gusli-highlight-2
+    # Replace with text-black or text-gusli-green depending on context, or just text-black.
+    # To be safe, we'll replace text-gusli-highlight-2 (which was light text) with text-black,
+    # text-gusli-highlight-1 (which was beige/gray) with text-black.
+    # text-white -> text-black
+    # text-gray-* -> text-black
+    # bg-gray-* -> bg-white
+    
+    replacements = {
+        'text-gusli-highlight-2': 'text-black',
+        'text-gusli-highlight-1': 'text-black',
+        'text-white': 'text-black',
+        'text-gray-400': 'text-black',
+        'text-gray-500': 'text-black',
+        'text-gray-600': 'text-black',
+        'text-gray-700': 'text-black',
+        'bg-gray-50': 'bg-white',
+        'bg-[#111111]': 'bg-white',
+        'bg-[#0d1a13]': 'bg-gusli-green text-black',
+        'border-gusli-highlight-1/20': 'border-black/20',
+        'border-gusli-highlight-1/30': 'border-black/30',
+        'border-gusli-highlight-1/50': 'border-black/50',
+        'border-gusli-highlight-1/10': 'border-black/10',
+        'border-gusli-highlight-1': 'border-black',
+        'placeholder-gusli-highlight-1/50': 'placeholder-black/50',
+        'placeholder-gusli-highlight-1/20': 'placeholder-black/50',
+    }
+    
+    new_content = content
+    for old, new in replacements.items():
+        new_content = new_content.replace(old, new)
+        
+    return new_content
+
+for filepath in glob.glob(r'C:\Users\Henrique Lima\Desktop\dti\frontend\src\**\*.jsx', recursive=True):
+    with open(filepath, 'r', encoding='utf-8') as f:
+        content = f.read()
+    
+    modified = replace_colors(content)
+    
+    if modified != content:
+        with open(filepath, 'w', encoding='utf-8') as f:
+            f.write(modified)
+        print(f'Updated {filepath}')"`*
+
+*User accepted the command `python -c "import os, glob
+
+for filepath in glob.glob(r'C:\Users\Henrique Lima\Desktop\dti\frontend\src\**\*.jsx', recursive=True):
+    with open(filepath, 'r', encoding='utf-8') as f:
+        content = f.read()
+    
+    modified = content.replace('#DFDAC6', 'black')
+    modified = modified.replace('gusli-highlight-2', 'black')
+    modified = modified.replace('gusli-highlight-1', 'black')
+    
+    if modified != content:
+        with open(filepath, 'w', encoding='utf-8') as f:
+            f.write(modified)
+        print(f'Updated {filepath}')"`*
+
+### User Input
+
+Na parte que você abre o site, na página inicial, percebe-se que o background é cinza. Retire esse background cinza, coloque um background verde da cor que foi colocada de padrão e altere todas as partes dessa seção para branco. No entanto, ao mover o mouse para baixo, as informações devem ficar verde novamente.
+Adicione uma borda estilo botão em cada um dos livros. Essa borda deve envolver a foto, o título, o autor, assim como o valor. Altere o botão adicionar para um ícone de adicionar.
+Na parte da loja, no filtro de coleções, apague índex geral e todas, deixando somente:
+- fantasia
+- ficção
+- gráfico novel
+- romance
+- terror
+- thriller psicológico
+A fonte da parte que está escrito "coleções", "orçamento máximo" e "limite de páginas". Adicione o mesmo estilo de formatação na parte dos livros.
+Ao selecionar um livro, deve aparecer, ficar um pouco transparente a capa do livro e aparecer centralizado em relação à capa do livro "ver mais informações acerca desta obra". Porém, o título do livro nem a capa dele deve aumentar; deve ficar do mesmo tamanho.
+Mova o botão de aleatório na parte de obras literárias para a parte superior direita, próxima às obras literárias. Esse botão deve ser verde na cor padrão.
+Na parte de check out, na parte de assinar termos e pagar, altere o valor do título para "concluir pedido" e altere a fonte final. Em vez de "manifesto", escreva "revisão do pedido".
+Não faça nenhuma modificação no logo; ele deve ficar exatamente como ele é de fato.
+
+### User Input
+
+1. Hero Section & Background:
+
+Remove the gray background on the homepage entirely and replace it with the site's default green.
+
+Set all text and elements in this initial hero section to white.
+
+Add a scroll interaction: when the user scrolls down, the information and text must transition back to green.
+
+2. Product Cards & Hover Effects:
+
+Enclose each book item (photo, title, author, and price) within a single button-style border.
+
+Replace the 'Add' text button with a minimalist 'Add' icon (e.g., a plus sign).
+
+Hover State: When hovering over a book, the cover must become slightly transparent, displaying the text 'ver mais informações acerca desta obra' perfectly centered over the image. Crucial: Do not apply any scale or zoom effect on hover; the book cover and title must remain their exact original size.
+
+3. Shop Filters & Typography:
+
+In the 'Coleções' filter, remove 'índex geral' and 'todas'. Keep only: fantasia, ficção, graphic novel, romance, terror, and thriller psicológico.
+
+Apply the exact same typography formatting used for the labels 'coleções', 'orçamento máximo', and 'limite de páginas' to the text elements inside the book product cards.
+
+4. Layout & Positioning:
+
+Move the 'Random' button in the 'Obras literárias' section to the top right corner, perfectly aligned with the section title. Set this button's background to the site's default green.
+
+5. Checkout & Logo:
+
+In the checkout section, change the step title from 'assinar termos e pagar' to 'concluir pedido'.
+
+Change the text 'manifesto' to 'revisão do pedido' and update the font style of this final section to match the site's clean aesthetic.
+
+Logo: Absolutely no modifications to the logo. Do not apply any CSS filters, shadows, or sizing changes. Leave it exactly as the original file.
+
+### User Input
+
+Deixe o tamanho do logo proporcional ao header. Coloque a cor verde, que foi definida anteriormente na página de inicialização, como se fosse um banner. Coloque o background do "Descubra seu gênero" verde, na cor que foi definida anteriormente. Altere o botão de aleatório na página de produto para ficar verde. Altere a fonte dos filtros nos produtos 
+
+### User Input
+
+Act as an expert frontend developer and UX designer. Implement the following UI changes strictly:
+
+Change the background color of the header and the Descubra Seu Novo Genero section to #12271D
+
+In the Descubra Seu Novo Genero section, set the button font colors and their details to pure white
+
+When a user selects any button, the active selection state color must change to #FFFDF5
+
+Add a subtle dark solid border and a soft drop shadow to the active button state so it remains clearly visible against the #12271D background
+
+In the Obras literarias section, add a dynamic text counter that says: Exibindo X obras conforme a selecao
+
+In the Colecoes filter, add a new filter option called Todas. Ensure this new option uses the exact same font values and styling as the existing filters
+
+Ensure the header background color is strictly #12271D across the entire site
+
+### User Input
+
+Adicione a cor #12271D na página de entrada, no cabeçalho em todas as partes do site que foram solicitadas. 
+
+Adicione essa #12271D também como background da seção "Descubra o seu novo gênero". Modifique para que essa parte esteja com a letra com a cor da letra em branco, para não dar conflito de acessibilidade. 
+
+Diminua o tamanho da foto das obras. Ao clicar em "Ver mais informações acerca desta obra", está gigante a imagem. Na página inicial está gigante a imagem. Conserte isso agora.
+
+### User Input
+
+Adicione a cor #12271D na página de entrada, no cabeçalho em todas as partes do site que foram solicitadas. 
+
+Adicione essa #12271D também como background da seção "Descubra o seu novo gênero". Modifique para que essa parte esteja com a letra com a cor da letra em branco, para não dar conflito de acessibilidade. 
+
+Diminua o tamanho da foto das obras. Ao clicar em "Ver mais informações acerca desta obra", está gigante a imagem. Na página inicial está gigante a imagem. Conserte isso agora.
+
+### User Input
+
+Retire a borda do logo que está no cabeçalho; ele deve estar integrado na página de loading.
+- Deixe os quatro livros pulando na coloração #12271D.
+- Diminua o tamanho das fotos dos livros e arredonde as bordas que compreendem a foto, autor, título e valor.
+- Abaixo da seção "Descubra o seu novo gênero", adicione uma parte rolante com todas as gêneros literários que vendemos no site.
+- No botão "Aleatório" nas obras literárias, deixe o botão "Aleatório" na coloração verde.
+- Aumente o tamanho da fonte do exibindo "X obras conforme a seleção".
+- Modifique o título do cabeçalho para que fique #12271D em todo o site, não somente na página de entrada. Atualmente ele está transparente.
+
+### User Input
+
+Este é um exemplo de como a parte dos livros deve ficar em relação ao seu tamanho. Modifica o botão de mais para ficar mais amigável, como está na imagem.
+
+Faz com que o cabeçalho fique #12271D em todas as partes do site e não transparente como está atualmente. 
+
+### User Input
+
+Retire a linha que separa o carrossel de gêneros textuais, que está se movimentando na parte de baixo da página inicial, de modo que ela fique na mesma separação do fim do site.
+Atualmente tem:
+- o Descubras
+- o novo gênero
+- o painel rolante
+- o Alinha
+- mais uma linha
+Essa primeira linha transparente deve desaparecer.
+
+### User Input
+
+Adicione "C:\Users\Henrique Lima\Desktop\dti\visual\íconebanner.png" na parte esquerda do banner na página de inicialização.
+
+Aumente o tamanho da fonte de "O futuro da curadoria editorial", diminua o tamanho da fonte de "Uma seleção exclusiva." 
+
+Diminua o tamanho da imagem dos livros na Home
+
+Ao clicar em adicionar ao carrinho, o botão [ Adquirir obra ] está ficando branc, e portanto não visível. Altere para que ao selecionar os botões de todas as partes do site, ele fique com a borda circular na coloração #12271D e interior branco. Altere o texto atual para Adicionar ao carrinho
+
+### User Input
+
+Altere a fonte do site inteiro para: DM Sans
+
+Aumente o tamanho da fonte do valor do livro na página inicial e na de produtos
+
+Retire a linha de separação do carrossel que contém os gêneros e deixe-o próximo ao rodapé, sem separações
+
+### User Input
+
+Delete toda linha/arquivo não utilizado neste projeto
+
+### User Input
+
+Na página individual de cada produto, aumente o tamanho da descrição do livro. Diminua o tamanho da imagem do livro 
+Quando move-se o scroll, o Investimento sobe e atrapalha a visibilidade do cabeçalho
+No valor, remova a palavra "Investimento"
+Altere todos os [ Adicionar ao carrinho ] para: "Adicionar ao carrinho"
+Altere todos os [ Voltar ao Catálogo ] para: "Voltar ao Catálogo"
+Crie uma página para cada autor. Nela, deve estar cada uma das obras deste(a) que está publicada no site
+Em cada uma das páginas individuais dos produtos, adicione um sublinhado no nome do autor, que ao clicar, redireciona à sua página e indica quais outros livros deste o usuário pode comprar
+
+### User Input
+
+Adicione ao plano de planejamento e tarefas:
+Na página de loading:
+- Adicione o "C:\Users\Henrique Lima\Desktop\dti\visual\íconebanner.png" abaixo da animação dos 4 livros
+
+Página de entrada:
+- Altere "O futuro da curadoria editorial" para "Leitura descomplicada"
+- Altere "Uma seleção exclusiva" para "Obras com impressão humanizada"
+- A palavra "humanizada" deve estar com a fonte Edu NSW ACT Hand Cursive (
+.edu-nsw-act-cursive-<uniquifier> {
+  font-family: "Edu NSW ACT Cursive", cursive;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+})
+- Altere: "Recomendações Exclusivas" para "Livros que valem a leitura"
+- Retire o espaço que existe entre o menu de gêneros autorrolante e o rodapé, eles devem ficar com o tamanho justo
+- Altere: "Descubra Seu Novo Gênero" para "Descubra sua próxima leitura"
+
+Na seção Fale Conosco, altere o texto dos seguintes meios de contato:
+- Aumente o distanciamento do início do cabeçalho do restante da página
+- Telefone: (31) 99421-7926
+- Sede Corporativa: Belo Horizonte - MG R. Levindo Lopes, 357 - 5º Andar CEP: 30140-170
+- Gusli Livros e Cultura: CNPJ: 45.123.456/0001-89
+
+No header:
+- Altere de "Informações" para "Contato"
+- Altere de "Conta" para "Minha Conta"
+
+Nas páginas individuais dos produtos:
+- Retire o número de páginas do meio da descrição e coloque-o no fim da descrição, logo após o ponto final. Formato --> "x Páginas"
+- Aumente a fonte do gênero literário
+
+Nas páginas dos autores:
+- Aumente o tamanho da fonte "Autor" e deixe os botões com as representações dos livros com o estilo igual à da entrada. Isto é: Tamanho da capa, borda e arrendamento semelhantes.
+
+No rodapé:
+- Altere "© 2026 GUSLI Books POC." --> "© 2026 Gusli Books"
+
+Em products:
+- Remova o "Arquivo Completo"
+- Altere a fonte de "Obras Literárias" para Edu NSW ACT Hand Cursive
+
+Em conta/criar conta:
+- Altere a coloração do texto dentro do botão de preto para branco "Entrar" e "Cadastrar"
+- Aumente o distanciamento do início do cabeçalho do restante da página
+
+Ao usuário acessar sua conta:
+- Aumente o distanciamento do início do cabeçalho do restante da página
+- Modifique o botão verde para que somente tenha uma borda verde, sem preenchimento
+- Retire o botão "Enviar e-mail"
+- Adicione um botão "Apagar conta", que apaga os dados do usuário do banco de dados
+
+No checkout:
+- Altere a cor do texto dentro da seção "REVISÃO DO PEDIDO" para branco
+- Altere de "Nome Completo" para "Nome"
+- Adicione a seção "Celular". O texto dentro do input deve ser "De preferência, que seja WhatsApp", sem limitação caracteres. Caracteres não-numéricos permitidos: [()+-#*]
+- Altere "[ Retornar ]" para "Voltar"
+- Adicione um validador para o cpf digitado, exemplo de programa em React: 
+"import React, { useState } from 'react';
+
+function ValidadorCPF() {
+  const [cpf, setCpf] = useState('');
+  const [mensagem, setMensagem] = useState('');
+  const [isValid, setIsValid] = useState(null);
+
+  // Função que valida o algoritmo do CPF
+  const validarCPF = (cpfEntrada) => {
+    // Remove caracteres não numéricos
+    const cpfLimpo = cpfEntrada.replace(/[^\d]+/g, '');
+
+    // Elimina CPFs inválidos conhecidos (tamanho, sequência de números repetidos)
+    if (cpfLimpo.length !== 11 || /^(\d)\1+$/.test(cpfLimpo)) {
+      return false;
+    }
+
+    // Algoritmo de validação dos dígitos verificadores
+    let soma = 0;
+    let resto;
+    for (let i = 1; i <= 9; i++) {
+      soma = soma + parseInt(cpfLimpo.substring(i - 1, i)) * (11 - i);
+    }
+    resto = (soma * 10) % 11;
+    if (resto === 10 || resto === 11) resto = 0;
+    if (resto !== parseInt(cpfLimpo.substring(9, 10))) return false;
+
+    soma = 0;
+    for (let i = 1; i <= 10; i++) {
+      soma = soma + parseInt(cpfLimpo.substring(i - 1, i)) * (12 - i);
+    }
+    resto = (soma * 10) % 11;
+    if (resto === 10 || resto === 11) resto = 0;
+    if (resto !== parseInt(cpfLimpo.substring(10, 11))) return false;
+
+    return true;
+  };
+
+  const handleValidation = () => {
+    if (validarCPF(cpf)) {
+      setMensagem('CPF Válido!');
+      setIsValid(true);
+    } else {
+      setMensagem('CPF Inválido!');
+      setIsValid(false);
+    }
+  };
+
+  return (
+    <div style={{ padding: '20px', fontFamily: 'Arial' }}>
+      <h3>Validador de CPF</h3>
+      <input
+        type="text"
+        placeholder="Digite o CPF (xxx.xxx.xxx-xx)"
+        value={cpf}
+        onChange={(e) => setCpf(e.target.value)}
+        maxLength={14}
+        style={{ padding: '8px', marginRight: '10px', width: '200px' }}
+      />
+      <button onClick={handleValidation} style={{ padding: '8px' }}>
+        Validar
+      </button>
+
+      {mensagem && (
+        <p style={{ color: isValid ? 'green' : 'red', fontWeight: 'bold' }}>
+          {mensagem}
+        </p>
+      )}
+    </div>
+  );
+}
+
+### User Input
+
+Home:
+
+Adicione uma nova seção abaixo do banner e acima da seção "Livros que valem a leitura". O fundo desta nova seção deve ser no mesmo tom off-white do restante da página.
+
+O layout deve ser simples, elegante e profissional. Adicione um título centralizado usando a cor verde escuro do site: 'O que você também compra com seu livro?'.
+
+Abaixo do título, crie um grid com 2 colunas, apresentando o conteúdo em 3 cards com bordas arredondadas e sombra suave (exatamente o mesmo estilo dos cards dos livros). Cada card deve ter um ícone minimalista em verde escuro no topo, seguido de um subtítulo em negrito e o texto:
+Card 1: (Ícone de árvore cortada) Subtítulo: 'Problemas ocultos'. Texto: 'A indústria tradicional esconde um lado insustentável: desperdício de papel, impacto ambiental e autores mal remunerados.'
+Card 2: (Ícone de folha verde): Subtítulo: 'Nossa solução'. Texto: 'Nossas obras são 100% impressas sob demanda com materiais recicláveis, mão de obra ética e royalties justos para quem as produz.'
+
+Mantenha o espaçamento (padding) generoso para que a leitura fique leve e escaneável."
+
+Diminua o tamanho da borda que contém cada uma das fotos das seções individuais dos livros. 
+
+### User Input
+
+Retire a moldura que envolve as imagens dos livros na página individual dos produtos
+
+### User Input
+
+Rodapé:
+- Ao clicar em Política de Privacidade e Termos de Serviço, o usuário deverá ser redirecionado para uma página de erro amigável: Texto centralizado na tela em verde "Página não encontrada". Subtítulo: "Infelizmente tivemos um erro aqui... o que acha de seguirmos para os livros de Ficção para imaginarmos como se nada tivesse dado errado? (Ficção deve estar em verde e sublinhado, ao usuário clicar na palavra, ele deve ser redirecionado para a página de ficção)
+
+Cabeçalho:
+- Lojas > "Coleções > Todas" deve ser alterado para "Ver Todos". Ao clicar neste botão, o usuário deve ser redirecionado para todos os livros, sem nenhum tipo de filtro
+
+Caso de carrinho vazio:
+- No link "Continuar Comprando", redirecione para products
+
+Ao clicar em qualquer link para redirecionar para outra página, deve-se também rolar a página para cima automaticamente. 
+
+Assim que o usuário clica no botão de redirecionar para o mercado pago para efetuar o pagamento, deve-se criar um histórico de pedido na parte de histórico de pedidos em minha conta com uma ID aleatória do pedido que não possa ser repetida.
+
+
+### User Input
+
+Coloque o ícone de uma lupa ao lado da loja no cabeçalho, em que, ao clicar nele, aparece uma caixa de texto em que está escrito "busque por uma obra ou autor específico ao usuário". Ao usuário digitar a obra ou o autor, deve ser entendido com ou sem pontuação, capitalização ou estilos gráficos, considerando exclusivamente o conteúdo do que foi escrito. Para retornar, ao pressionar Enter, as correspondências mais exatas ou similares daquela obra ou gênero textual. 
+
+### User Input
+
+Analise para que todas as páginas personalizadas dos produtos tenham o número de páginas de produto na formatação já solicitada anteriormente. Alguns produtos não estão com a formatação, enquanto outros estão perfeitos. Resolva o erro.
+
+### User Input
+
+Modifique para que a caixa de busca esteja escrita: "digite uma obra, autor ou gênero". O texto deve estar com o texto da caixa de input e as bordas devem estar arredondadas. Ao usuário clicar fora da lupa ou em algum canto da tela, deve-se abaixar automaticamente e esconder a caixa de busca. 
+
+### User Input
+
+Ao clicar no link da ficção na página de erro, sou redirecionado a uma página de ficção não existente. Ao ser redirecionado, o usuário deve ser redirecionado para obras literárias com filtro de ficção 
+
+### User Input
+
+Analise para que todas as páginas personalizadas dos produtos tenham o número de páginas de produto na formatação já solicitada anteriormente. Alguns produtos não estão com a formatação, enquanto outros estão perfeitos. Resolva o erro.
+
+Erros relacionados a caixa de seleção ao pesquisar um gênero: o mesmo não aparece nas opções de busca depois de o usuário pesquisar um título, autor ou gênero textual e clicar na seleção "Coleções" em qualquer um dos filtros. O mesmo exibe 0 obras conforme a seleção, faça com que as mesmas obras existentes na loja. 
+
+### User Input
+
+Caso o pagamento seja aprovado pela API Mercado Pago, deve-se mostrar uma tela de aprovação com o fundo verde e as grafias em branco, indicando "pedido realizado". "Já enviamos todas as informações para seu e-mail e número cadastrado. Agora é só sentar e pensar nas suas próximas aventuras literárias ;)"
+
+### User Input
+
+Em relação ao ícone de busca, o usuário deve conseguir acessar tanto a obra, o título, parte do título, parte do nome do autor ou parte do gênero textual. Modifique o preço de "Eu te darei o sol" para 0,99 
+
+### User Input
+
+1. Alterações no Frontend:
+
+Remova completamente a integração, os scripts e as chamadas de API do Mercado Pago.
+
+Remova a mensagem de verificação de pagamento do Mercado Pago.
+
+Ao clicar em 'Concluir pedido', o formulário deve enviar uma requisição (POST) para o backend contendo os dados do carrinho e os dados do formulário do cliente exatamente nesta ordem: nome, e-mail, CPF, celular, CEP, endereço, número, complemento, bairro, localidade e estado.
+
+2. Alterações no Backend (Node.js):
+
+Remova qualquer lógica, rota ou dependência relacionada ao Mercado Pago.
+
+Adicione a biblioteca nodemailer.
+
+Crie um endpoint para processar o checkout recebendo os dados do frontend. Configure o transportador do Nodemailer (SMTP do Gmail) utilizando a conta henriquelimagusmao@gmail.com e a senha de aplicativo rpiq gwvm vdra mnwc. Em seguida, dispare dois e-mails simultâneos:
+
+E-mail 1 (Para o Administrador):
+
+Destinatário: henriquelimagusmao@gmail.com
+
+Assunto: Novo Pedido Realizado - Gusli Books
+
+Corpo: Formate uma mensagem em HTML contendo todos os dados do cliente (nome, e-mail, CPF, celular, endereço completo) e os detalhes dos itens do carrinho do pedido.
+
+E-mail 2 (Para o Cliente):
+
+Destinatário: E-mail do cliente (recebido do frontend).
+
+Assunto: Confirmação de Pedido - Gusli Books
+
+Corpo: Apenas o seguinte texto exato: 'Seu pedido foi feito. Entraremos em contato para realizar o pagamento em breve. Obrigado por pedir na Gusli Books.'
+
+### User Input
+
+Corrija a configuração de autenticação do Nodemailer no backend para resolver o Erro 535 do Google.
+
+1. Atualização de Credenciais:
+No transportador (transporter) do Nodemailer, altere os dados de autenticação (auth) para:
+
+user: 'howisitmanufactured@gmail.com'
+
+pass: 'xvxcvxdfdfvgdf'
+
+2. Manutenção da Lógica:
+Mantenha o restante da lógica de disparo e os destinatários intactos:
+
+O E-mail 1 (notificação com os dados do pedido) deve continuar sendo enviado PARA o administrador em 'henriquelimagusmao@gmail.com'.
+
+O E-mail 2 (mensagem de confirmação) deve continuar sendo enviado PARA o e-mail do cliente preenchido no checkout."
+
+### Planner Response
+
+Pronto!
+
+O link `"Ver Todos"` dentro do menu suspenso de "Loja" no cabeçalho foi alterado. 
+
+Em vez de enviar o usuário para a página padrão de produtos genérica, agora ele executa exatamente a mesma função dos botões dinâmicos acima dele e te redireciona ativamente para a URL de filtro: `/products?genre=Todas`.
+
+A interface do catálogo vai reconhecer a seleção de imediato e exibir todas as obras disponíveis sem a restrição para *Ficção*.
+
+### User Input
+
+Na parte de busca, o usuário deve poder pesquisar a coleção, ou seja, o gênero literário. Inclua isso nas possibilidades de busca
+
+
+### User Input
+
+Create a seamless transition animation between the loading screen and the main page. Exactly when the loading page closes, trigger a circular reveal effect. A circle using the project's existing primary dark green color must start from the exact center of the screen and expand outward until it covers the entire viewport, smoothly revealing the main page. Use a performant CSS technique like an expanding clip-path: circle() or a scaling element to ensure the animation is fluid, modern, and does not cause layout shifts.
+
+
+### User Input
+
+Logo após a página de carregamento, a página foi em verde por um tempo e depois foi automaticamente para a parcialização, página inicial, sem nenhum tipo de animação, como foi solicitado. Abra essa animação, fazendo alterações até que fique do jeito necessário.
+
+### User Input
+
+Envie o restante do prompt para o GitHub. O nome do commit deve ser: "feat: alterações finais e finalização da interface do usuário do projeto".
+
+### User Input
+
+Adicione ao README.md da pasta principal DTI: 
+- A documentação da API, explicando todos os arquivos, funções, de maneira objetiva e direto ao ponto
+- Adicione neste documento uma seção de "Premissas consideradas". Adicione à estas: O pagamento será feito de forma manual, após a seleção do pedido pelo usuário; O frete será discutido posteriormente; O foco da Gusli Books é divulgar livros ao consumidor, não do usuário procurar um livro para comprar, como na Amazon
+
